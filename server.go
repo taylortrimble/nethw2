@@ -18,7 +18,6 @@ func main() {
 		if err != nil {
 			log.Println(err)
 		}
-		defer conn.Close()
 
 		written, err := io.CopyN(ioutil.Discard, conn, 100)
 		if err != nil {
