@@ -33,12 +33,14 @@ func main() {
 			log.Println(err)
 		}
 
-		for {
-			b := make([]byte, 20)
+		b := make([]byte, 20)
+		for err == nil {
 			_, err = conn.Read(b)
-			if err != nil {
-				log.Println(err)
-			}
+		}
+
+		err = conn.Close()
+		if err != nil {
+			log.Println(err)
 		}
 	}
 }
