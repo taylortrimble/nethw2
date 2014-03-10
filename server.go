@@ -19,12 +19,12 @@ func main() {
 			log.Println(err)
 		}
 
-		written, err := io.CopyN(ioutil.Discard, conn, 100)
+		written, err := io.CopyN(ioutil.Discard, conn, 10000000)
 		if err != nil {
 			log.Println(err)
 		}
-		if written != 100 {
-			log.Println("Didn't write 100 bytes")
+		if written != 10000000 {
+			log.Println("Didn't write 10000000 bytes")
 			continue
 		}
 

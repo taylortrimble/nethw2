@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"time"
 )
 
 func main() {
@@ -14,13 +15,15 @@ func main() {
 		return
 	}
 
-	written, err := io.CopyN(conn, rand.Reader, 100)
+	start := time.Now()
+
+	written, err := io.CopyN(conn, rand.Reader, 10000000)
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	if written != 100 {
-		log.Println("Did not send 100 bytes")
+	if written != 10000000 {
+		log.Println("Did not send 10000000 bytes")
 		return
 	}
 
@@ -31,12 +34,15 @@ func main() {
 		return
 	}
 
-	log.Println(string(response))
-
+	var end time.Time
 	if string(response) == "FIN!" {
+		end = time.Now()
 		err = conn.Close()
 		if err != nil {
 			log.Println("Couldn't close connection properly")
 		}
 	}
+
+	log.Println(string(response))
+	log.Println("Took", end.Sub(start))
 }
