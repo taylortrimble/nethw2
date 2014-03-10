@@ -14,13 +14,13 @@ func main() {
 		return
 	}
 
-	written, err := io.CopyN(conn, rand.Reader, 10000000)
+	written, err := io.CopyN(conn, rand.Reader, 100)
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	if written != 10000000 {
-		log.Println("Did not send 10000000 bytes")
+	if written != 100 {
+		log.Println("Did not send 100 bytes")
 		return
 	}
 
