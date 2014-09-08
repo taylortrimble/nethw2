@@ -1,0 +1,38 @@
+client.go
+=========
+
+This file runs the client part of the homework. It gets a list of registered servers,
+looks for the last one that is registered for "trim0055", connects to it, uploads 10M bytes,
+times the transaction, and uploads the time data to the database.
+
+It also gets and prints the last time uploads to the database.
+
+
+
+server.go
+=========
+
+Server registers itself with the server registry using it's local IP address and port, and
+services the receipt of 10M bytes, responding with FIN. This can be used to time upload
+speed on the client.
+
+Note that the server registers itself with its preferred interface's IP address. This is a LAN
+IP, but anything else is unreasonable to expect give the nature of NAT and firewalls.
+
+
+
+Running these programs
+======================
+
+In a fully configured Go Environment (http://golang.org/doc/code.html) you will be able to run the
+client and server code directly with:
+
+go run server.go
+go run client.go
+
+The code is tested to run on any host (where the 2 machines share a LAN connection), and the Go
+programming languauge is available as a module on CSE labs computers.
+
+
+
+Taylor Trimble
